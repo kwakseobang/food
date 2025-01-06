@@ -23,8 +23,11 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Column(name = "nickname", nullable = false, unique = true)
     private String nickname;
@@ -32,12 +35,6 @@ public class Member extends BaseEntity {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @Column(name = "social_id", nullable = false, length = 30)
-    private String socialId;
-
-    @Column(name = "social_type", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private SocialType socialType;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -45,20 +42,15 @@ public class Member extends BaseEntity {
 
     @Builder // 회원가입 용도
     public Member(
-            String email,
-            String nickname,
-            String imageUrl,
-            String socialId,
-            SocialType socialType,
-            Role role
+            String username,
+            String password,
+            String nickname
     ) {
 
-        this.email = email;
+        this.username = username;
+        this.password = password;
         this.nickname = nickname;
-        this.imageUrl = imageUrl;
-        this.socialId = socialId;
-        this.socialType = socialType;
-        this.role = role;
+        this.role = Role.ROLE_USER;
     }
 
     public void updateName(String nickname) {
