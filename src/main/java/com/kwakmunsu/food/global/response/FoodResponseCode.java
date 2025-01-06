@@ -17,11 +17,7 @@ public enum ResponseCode  {
     UPDATE_USER(StatusCode.NO_CONTENT, SuccessMessage.UPDATE_USER),
     DELETE_USER(StatusCode.NO_CONTENT, SuccessMessage.DELETE_USER),
 
-    // User 관련 실패 응답
-    NOT_FOUND_USER(StatusCode.NOT_FOUND, ErrorMessage.NOT_FOUND_USER),
-    BAD_REQUEST_USER(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_USER),
-    DUPLICATE_ID(StatusCode.BAD_REQUEST, ErrorMessage.DUPLICATE_ID),
-    DUPLICATE_NICKNAME(StatusCode.BAD_REQUEST, ErrorMessage.DUPLICATE_NICKNAME),
+
 
     // ===================== //
 
