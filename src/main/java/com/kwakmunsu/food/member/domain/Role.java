@@ -2,5 +2,5 @@ package com.kwakmunsu.food.member.domain;
 
 public enum Role {
 
-    ADMIN, USER;
+    ROLE_USER, ROLE_ADMIN
 }
