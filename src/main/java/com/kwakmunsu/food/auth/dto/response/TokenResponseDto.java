@@ -14,11 +14,7 @@ public class TokenResponseDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class AccessTokenResponse {
-
-        private String grantType; // Bearer
         private String accessToken;
-        private Long accessTokenExpiresIn;
-        //rt는 보안 강화를 위해 쿠키에 담아서 보냄
     }
     @Builder
     @Getter
