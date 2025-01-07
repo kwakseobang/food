@@ -50,7 +50,8 @@ public class Member extends BaseEntity {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
-        this.role = Role.ROLE_USER;
+        this.role = Role.ROLE_MEMBER;
+        this.imageUrl = "";
     }
 
     public void updateName(String nickname) {
