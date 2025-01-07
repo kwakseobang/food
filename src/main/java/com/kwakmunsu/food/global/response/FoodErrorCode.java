@@ -12,7 +12,7 @@ public enum FoodErrorCode {
     // User 관련 실패 응답
     NOT_FOUND_USER(StatusCode.NOT_FOUND, ErrorMessage.NOT_FOUND_USER),
     BAD_REQUEST_USER(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_USER),
-    DUPLICATE_ID(StatusCode.BAD_REQUEST, ErrorMessage.DUPLICATE_ID),
+    DUPLICATE_USERNAME(StatusCode.BAD_REQUEST, ErrorMessage.DUPLICATE_USERNAME),
     DUPLICATE_NICKNAME(StatusCode.BAD_REQUEST, ErrorMessage.DUPLICATE_NICKNAME),
 
     // vote 관련 실패 응답
