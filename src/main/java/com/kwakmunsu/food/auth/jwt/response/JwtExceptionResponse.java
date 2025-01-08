@@ -1,4 +1,4 @@
-package com.kwakmunsu.food.auth.jwt.response;
+package com.kwakmunsu.food.global.config.jwt.response;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

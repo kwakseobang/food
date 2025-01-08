@@ -1,8 +1,8 @@
-package com.kwakmunsu.food.auth.jwt.filter;
+package com.kwakmunsu.food.global.config.jwt.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kwakmunsu.food.auth.jwt.JwtProvider;
-import com.kwakmunsu.food.auth.jwt.response.JwtExceptionResponse;
+import com.kwakmunsu.food.global.config.jwt.JwtProvider;
+import com.kwakmunsu.food.global.config.jwt.response.JwtExceptionResponse;
 import com.kwakmunsu.food.global.response.FoodErrorCode;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;

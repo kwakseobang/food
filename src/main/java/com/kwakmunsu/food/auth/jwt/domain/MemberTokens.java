@@ -1,4 +1,4 @@
-package com.kwakmunsu.food.auth.jwt.domain;
+package com.kwakmunsu.food.global.config.jwt.domain;
 
 
 import lombok.Getter;

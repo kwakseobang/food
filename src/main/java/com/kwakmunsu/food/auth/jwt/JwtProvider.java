@@ -1,7 +1,7 @@
-package com.kwakmunsu.food.auth.jwt;
+package com.kwakmunsu.food.global.config.jwt;
 
 
-import com.kwakmunsu.food.auth.jwt.domain.MemberTokens;
+import com.kwakmunsu.food.global.config.jwt.domain.MemberTokens;
 import com.kwakmunsu.food.global.exception.FoodBadRequestException;
 import com.kwakmunsu.food.global.response.FoodErrorCode;
 import io.jsonwebtoken.Claims;
