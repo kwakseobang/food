@@ -5,6 +5,7 @@ public class ErrorMessage {
     // < User -> Error >
     public static final String NOT_FOUND_USER = "ERROR - 회원을 찾을 수 없습니다.";
     public static final String BAD_REQUEST_USER = "ERROR - 잘못된 회원 요청 에러";
+    public static final String BAD_REQUEST_PASSWORD = "ERROR - 잘못된 비밀번호 요청 에러";
     public static final String DUPLICATE_USERNAME = "ERROR - 회원가입 ID 중복 에러";
     public static final String DUPLICATE_NICKNAME = "ERROR - 회원가입 닉네임 중복 에러";
 
