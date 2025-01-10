@@ -1,4 +1,4 @@
-package com.kwakmunsu.food.global.config.jwt.handler;
+package com.kwakmunsu.food.auth.jwt.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

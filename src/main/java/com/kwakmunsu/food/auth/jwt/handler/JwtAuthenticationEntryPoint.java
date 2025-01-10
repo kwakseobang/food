@@ -1,4 +1,4 @@
-package com.kwakmunsu.food.global.config.jwt.handler;
+package com.kwakmunsu.food.auth.jwt.handler;
 
 
 import jakarta.servlet.ServletException;
@@ -11,7 +11,6 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 // 401 에러 --> 토큰 인증 에러 시 여기서 에러를 잡는다.
-@Log4j2
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
@@ -21,6 +20,5 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         // 유효한 자격증명을 제공하지 않고 접근하려 할때 401
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
     }
-
 }
 
