@@ -1,6 +1,7 @@
-package com.kwakmunsu.food.global.exception;
+package com.kwakmunsu.food.global.exception.handler;
 
 
+import com.kwakmunsu.food.global.exception.FoodException;
 import com.kwakmunsu.food.global.response.ErrorResponse;
 import com.kwakmunsu.food.global.response.FoodErrorCode;
 import java.nio.file.AccessDeniedException;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
-//@RestControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
