@@ -1,8 +1,8 @@
-package com.kwakmunsu.food.global.config.jwt.filter;
+package com.kwakmunsu.food.auth.jwt.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kwakmunsu.food.global.config.jwt.JwtProvider;
-import com.kwakmunsu.food.global.config.jwt.response.JwtExceptionResponse;
+import com.kwakmunsu.food.auth.jwt.JwtProvider;
+import com.kwakmunsu.food.auth.jwt.response.JwtExceptionResponse;
 import com.kwakmunsu.food.global.response.FoodErrorCode;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -29,7 +30,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtProvider jwtProvider;
     private final ObjectMapper objectMapper;
-
+    private static final AntPathMatcher pathMatcher = new AntPathMatcher();
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
@@ -67,12 +68,16 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+
         String[] excludePath = {
-                "/auth/**","/swagger/**","/swagger-ui/**","/v3/api-docs/**",
+                "/swagger/","/swagger-ui/**","/v3/api-docs/**",
+                "/auth/**",
                 "/members/username/**","/members/nickname/**"
         };//"/v3/api-docs/**" 추가해줘야 swagger 작동
         String path = request.getRequestURI();
-        return Arrays.stream(excludePath).anyMatch(path::startsWith);
+        System.out.println("Request URI: " + path);  // URI 로그 출력
+        return Arrays.stream(excludePath)
+                .anyMatch(exclude -> pathMatcher.match(exclude, path));
     }
 
     private void sendErrorResponse(HttpServletResponse response,FoodErrorCode foodErrorCode) throws IOException {
