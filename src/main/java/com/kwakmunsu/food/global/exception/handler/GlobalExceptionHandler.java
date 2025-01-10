@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
-@RestControllerAdvice
+//@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
@@ -19,10 +19,10 @@ public class GlobalExceptionHandler {
         return ErrorResponse.toResponseEntity(FoodErrorCode.INTERNAL_SERVER_ERROR);
     }
 
-//    @ExceptionHandler(AuthenticationException.class)
-//    public ResponseEntity<ErrorResponse> handleUnauthorizedException() {
-//        return ErrorResponse.toResponseEntity(FoodErrorCode.UNAUTHORIZED_ERROR);
-//    }
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorizedException() {
+        return ErrorResponse.toResponseEntity(FoodErrorCode.UNAUTHORIZED_ERROR);
+    }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> handleForbiddenException() {
