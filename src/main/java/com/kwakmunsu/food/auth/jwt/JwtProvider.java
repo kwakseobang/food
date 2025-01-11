@@ -50,7 +50,7 @@ public class JwtProvider {
 
     
     public MemberTokens createTokens(Member member) {
-        String accessToken = createToken(member.getId(),member.getRole(), "access",10 * 1000L);
+        String accessToken = createToken(member.getId(),member.getRole(), "access",accessTokenExpireTime);
         String refreshToken = createToken(member.getId(), member.getRole(), "refresh",refreshTokenExpireTime);
 
         return new MemberTokens(refreshToken, accessToken);
