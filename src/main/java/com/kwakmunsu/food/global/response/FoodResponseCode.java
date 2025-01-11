@@ -20,14 +20,14 @@ public enum FoodResponseCode {
 
     // ===================== //
 
-    // vote 관련 성공 응답
-    CREATED_VOTE(StatusCode.CREATED, SuccessMessage.CREATED_VOTE),
-    SUBMITTED_VOTE(StatusCode.OK, SuccessMessage.SUBMITTED_VOTE),
-    READ_VOTE(StatusCode.OK, SuccessMessage.READ_VOTE),
-    READ_VOTES(StatusCode.OK, SuccessMessage.READ_VOTES),
-    UPDATE_VOTE(StatusCode.NO_CONTENT, SuccessMessage.UPDATE_VOTE),
-    DELETE_VOTE(StatusCode.NO_CONTENT, SuccessMessage.DELETE_VOTE),
-    READ_VOTE_AUTHOR(StatusCode.OK,SuccessMessage.READ_VOTE_AUTHOR),
+    // 음식 기록 관련 성공 응답
+    CREATED_FOOD_RECORD(StatusCode.CREATED, SuccessMessage.CREATED_RECORD),
+    SUBMITTED_FOOD_RECORD(StatusCode.OK, SuccessMessage.SUBMITTED_RECORD),
+    READ_FOOD_RECORD(StatusCode.OK, SuccessMessage.READ_RECORD),
+    READ_FOOD_RECORDS(StatusCode.OK, SuccessMessage.READ_RECORDS),
+    UPDATE_FOOD_RECORD(StatusCode.NO_CONTENT, SuccessMessage.UPDATE_RECORD),
+    DELETE_FOOD_RECORD(StatusCode.NO_CONTENT, SuccessMessage.DELETE_RECORD),
+    READ_FOOD_RECORD_AUTHOR(StatusCode.OK,SuccessMessage.READ_RECORD_AUTHOR),
 
 
 

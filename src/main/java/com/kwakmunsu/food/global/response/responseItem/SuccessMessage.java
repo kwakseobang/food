@@ -11,14 +11,14 @@ public class SuccessMessage {
 
 
 
-    // < Vote - Success>
-    public static final String CREATED_VOTE = "SUCCESS - 투표 생성 성공";
-    public static final String SUBMITTED_VOTE = "SUCCESS - 투표 제출 성공";
-    public static final String READ_VOTE = "SUCCESS - 투표 정보 조회 성공";
-    public static final String READ_VOTES = "SUCCESS - 투표 목록 조회 성공";
-    public static final String UPDATE_VOTE = "SUCCESS - 투표 수정 성공";
-    public static final String READ_VOTE_AUTHOR = "SUCCESS - 투표 작성자 조회 성공";
-    public static final String DELETE_VOTE = "SUCCESS - 투표 삭제 성공";
+    // < foodRecord - Success>
+    public static final String CREATED_RECORD = "SUCCESS - 음식 기록 성공";
+    public static final String SUBMITTED_RECORD = "SUCCESS - 음식 제출 성공";
+    public static final String READ_RECORD = "SUCCESS - 음식 기록 조회 성공";
+    public static final String READ_RECORDS = "SUCCESS - 음식 리스트 조회 성공";
+    public static final String UPDATE_RECORD = "SUCCESS - 음식 기록 수정 성공";
+    public static final String READ_RECORD_AUTHOR = "SUCCESS - 음식 기록 작성자 조회 성공";
+    public static final String DELETE_RECORD = "SUCCESS - 음식 기록 삭제 성공";
 
 
 

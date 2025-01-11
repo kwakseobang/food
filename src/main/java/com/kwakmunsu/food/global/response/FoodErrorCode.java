@@ -9,16 +9,17 @@ import lombok.Getter;
 @Getter
 public enum FoodErrorCode {
 
-    // User 관련 실패 응답
-    NOT_FOUND_USER(StatusCode.NOT_FOUND, ErrorMessage.NOT_FOUND_USER),
-    BAD_REQUEST_USER(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_USER),
+    // Member 관련 실패 응답
+    NOT_FOUND_MEMBER(StatusCode.NOT_FOUND, ErrorMessage.NOT_FOUND_USER),
+    BAD_REQUEST_MEMBER(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_USER),
     BAD_REQUEST_PASSWORD(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_PASSWORD),
     DUPLICATE_USERNAME(StatusCode.BAD_REQUEST, ErrorMessage.DUPLICATE_USERNAME),
     DUPLICATE_NICKNAME(StatusCode.BAD_REQUEST, ErrorMessage.DUPLICATE_NICKNAME),
 
-    // vote 관련 실패 응답
-    NOT_FOUND_VOTE(StatusCode.NOT_FOUND, ErrorMessage.NOT_FOUND_VOTE),
-    BAD_REQUEST_VOTE(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_VOTE),
+    // foodRecord 관련 실패 응답
+    NOT_FOUND_FOOD_RECORD(StatusCode.NOT_FOUND, ErrorMessage.NOT_FOUND_FOOD_RECORD),
+    BAD_REQUEST_FOOD_RECORD(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_FOOD_RECORD),
+    BAD_REQUEST_CATEGORY(StatusCode.BAD_REQUEST, ErrorMessage.BAD_REQUEST_CATEGORY),
 
 
     // Token 실패 응답

@@ -13,14 +13,15 @@ public class ErrorMessage {
 
     // <Vote - Error>
 
-    public static final String NOT_FOUND_VOTE = "ERROR - 투표를 찾을 수 없습니다.";
-    public static final String BAD_REQUEST_VOTE = "ERROR - 잘못된 투표 요청 에러";
+    public static final String NOT_FOUND_FOOD_RECORD = "ERROR - 해당 날짜의 음식 기록을 찾을 수 없습니다.";
+    public static final String BAD_REQUEST_FOOD_RECORD = "ERROR - 잘못된 음식 기록 요청 에러";
+    public static final String BAD_REQUEST_CATEGORY = "ERROR - 잘못된 음식 카테고리 요청 에러";
 
 
     // < Auth - Error>
     public static final String UNAUTHORIZED = "ERROR - Unauthorized 에러"; // 인증되지 않은 사용자
     public static final String FORBIDDEN = "ERROR - Forbidden 에러"; // 권한 없을 때
-    public static final String PREVENT_GET_ERROR = "Status 204 - 리소스 및 리다이렉트 GET호출 에러 방지";
+    public static final String PREVENT_GET_ERROR = "Status 204 - 리소스 및 리다이렉트 GET 호출 에러 방지";
 
 
 
