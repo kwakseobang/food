@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
     // CustomException
 
     @ExceptionHandler(FoodException.class)
-    public ResponseEntity<ErrorResponse> handleCustomException(FoodException ex) {
-        return ErrorResponse.toResponseEntity(ex.getErrorCode());
+    public ResponseEntity<ErrorResponse<String>> handleCustomException(FoodException ex) {
+        return ErrorResponse.toResponseEntity(ex.getErrorCode(),ex.getMessage());
     }
 }
