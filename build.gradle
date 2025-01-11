@@ -49,6 +49,20 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+	// AWS s3
+//	spring-cloud-starter-aws
+//	다양한 AWS 서비스 지원
+//	S3 뿐만 아닌 다른 AWS 서비스 통합 여러 기능 포함
+//	aws-java-sdk-s3
+//	AWS SDK for Java의 S3 전용 클라이언트
+//	S3와 관련된 작업을 수행하기 위한 가장 기본적인 라이브러리
+//	S3에 특화된 기능 제공, 다른 AWS 서비스 통합 기능 포함x
+//	s3만 필요함으로 저는 aws-java-sdk-s3 사용 합니다!
+//	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	implementation 'software.amazon.awssdk:s3:2.20.28'
+	implementation 'software.amazon.awssdk:sts:2.20.28'
+	implementation 'software.amazon.awssdk:auth:2.20.28'
 }
 
 tasks.named('test') {
