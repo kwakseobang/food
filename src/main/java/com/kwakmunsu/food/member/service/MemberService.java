@@ -64,10 +64,16 @@ public class MemberService {
         Member currentMember = getCurrentUser(currentMemberId);
         return currentMember;
     }
+    @Transactional(readOnly = true)
+    public Long getCurrentMemberId() {
+        return JwtUtil.getCurrentMemberId();
+    }
+
+
 
     @Transactional(readOnly = true)
     public Member getCurrentUser(Long memberId) {
         return memberRepository.findById(memberId).orElseThrow(
-                () -> new FoodNotFoundException(FoodErrorCode.NOT_FOUND_USER));
+                () -> new FoodNotFoundException(FoodErrorCode.NOT_FOUND_MEMBER));
     }
 }
