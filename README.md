@@ -12,3 +12,22 @@
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 ~~~
 를 사용하자
+
+# 배운 점
+### application.properties
+- application.properties에는 민감한 정보가 노출 되면 안된다. 따라서 application-private.properties
+를 만들고 민감한 정보는 해당 파일에 저장 후 .gitignore에 추가함.
+- 그리고application.properties에
+~~~
+spring.profiles.include=private
+~~~
+를 추가하여서 사용하면 application-private.properties의 정보도 사용 가능하다.
+### AWS 관련 라이브러리 
+
+#### spring-cloud-starter-aws
+- 다양한 AWS 서비스 지원
+- S3 뿐만 아닌 다른 AWS 서비스 통합 여러 기능 포함
+#### aws-java-sdk-s3 (해당 프로젝트는 이 라이브러리 사용.)
+- AWS SDK for Java의 S3 전용 클라이언트
+-	S3와 관련된 작업을 수행하기 위한 가장 기본적인 라이브러리
+-	S3에 특화된 기능 제공, 다른 AWS 서비스 통합 기능 포함x
