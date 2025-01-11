@@ -21,7 +21,7 @@ public class S3ImageService {
     private final String bucket;
     private final String imageBaseUri;
 
-
+    private static final List<String> WHITE_LIST = List.of("jpg", "jpeg", "png", "webp", "heic");
     public S3ImageService(
             S3Client s3Client,
             @Value("${cloud.aws.s3.bucketName}") String bucket,
@@ -31,12 +31,18 @@ public class S3ImageService {
         this.bucket = bucket;
         this.imageBaseUri = imageBaseUri;
     }
+    // 다중 이미지 업로드
+    public List<String> uploadImages(List<MultipartFile> files) {
+        List<String> images = new ArrayList<>();
+        for (MultipartFile file : files) {
+            images.add(uploadImage(file));
+        }
+        return images;
+    }
 
     public String uploadImage(MultipartFile file) {
-        if (file.isEmpty() || Objects.isNull(file.getOriginalFilename())) {
-            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_UPLOAD_ERROR);
-        }
-        this.validateImageFileExtention(file.getOriginalFilename());
+        validate(file);
+
         String fileName = createFileName(file);
         this.uploadImageToS3(file, fileName, s3Client);
         String fileUrl = imageBaseUri + fileName;
@@ -76,19 +82,19 @@ public class S3ImageService {
         }
     }
 
-    private void validateImageFileExtention(String filename) {
-        int lastDotIndex = filename.lastIndexOf(".");
-        if (lastDotIndex == -1) {
-            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_ERROR);
-        }
-
-        String extention = filename.substring(lastDotIndex + 1).toLowerCase();
-        List<String> allowedExtentionList = Arrays.asList("jpg", "jpeg", "png", "gif");
-
-        if (!allowedExtentionList.contains(extention)) {
-            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_TYPE_ERROR);
-        }
-    }
+//    private void validateImageFileExtention(String filename) {
+//        int lastDotIndex = filename.lastIndexOf(".");
+//        if (lastDotIndex == -1) {
+//            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_ERROR);
+//        }
+//
+//        String extention = filename.substring(lastDotIndex + 1).toLowerCase();
+//        List<String> allowedExtentionList = Arrays.asList("jpg", "jpeg", "png", "gif");
+//
+//        if (!allowedExtentionList.contains(extention)) {
+//            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_TYPE_ERROR);
+//        }
+//    }
 
 
     // 이미지 파일 이름 중복 예방으로 UUID 사용.
@@ -99,5 +105,38 @@ public class S3ImageService {
     // URL에서 버킷 베이스 URL을 제거하고 파일 키를 반환
     private String extractFileNameFromUrl(String imageUrl) {
         return imageUrl.replace(imageBaseUri, "");
+    }
+
+
+
+
+    private void validate(MultipartFile file) {
+        validateNotNull(file);
+        String fileName = file.getOriginalFilename();
+        validateFileNameNotBlank(fileName);
+        validateExtension(fileName);
+    }
+
+    private void validateNotNull(MultipartFile file) {
+        if (file == null) {
+            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_ERROR,"파일을 전달 받지 못했습니다");
+        }
+    }
+
+    private void validateFileNameNotBlank(String fileName) {
+        if (fileName == null || fileName.isBlank()) {
+            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_ERROR,"파일 이름은 비어있을 수 없습니다");
+        }
+    }
+
+    public void validateExtension(String fileName) {
+        int extensionIndex = fileName.lastIndexOf(".");
+        if (extensionIndex == -1 || fileName.endsWith(".")) {
+            throw new FoodAwsS3Exception(FoodErrorCode.AWS_S3_TYPE_ERROR,"파일 형식이 잘못되었습니다");
+        }
+        String extension = fileName.substring(extensionIndex + 1);
+        if (!WHITE_LIST.contains(extension.toLowerCase())) {
+            throw new  FoodAwsS3Exception(FoodErrorCode.AWS_S3_TYPE_ERROR, "지원하지 않는 확장자입니다: " + extension);
+        }
     }
 }
