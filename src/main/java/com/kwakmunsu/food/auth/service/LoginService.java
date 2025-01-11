@@ -45,7 +45,7 @@ public class LoginService {
             HttpServletResponse response
     ) {
         Member member = memberRepository.findByUsername(loginRequest.getUsername())
-                .orElseThrow(() -> new FoodNotFoundException(FoodErrorCode.NOT_FOUND_USER));
+                .orElseThrow(() -> new FoodNotFoundException(FoodErrorCode.NOT_FOUND_MEMBER));
         // mathes(평문 패스워드, 암호화 패스워드) 순서로 해야 됨.
         if (!bCryptPasswordEncoder.matches(loginRequest.getPassword(), member.getPassword())) {
             throw new FoodBadRequestException(FoodErrorCode.BAD_REQUEST_PASSWORD);
@@ -62,7 +62,7 @@ public class LoginService {
     ) {
         String memberId = jwtProvider.getSubject(refreshTokenRequest);
         Member member = memberRepository.findById(Long.parseLong(memberId))
-                .orElseThrow(() -> new FoodNotFoundException(FoodErrorCode.NOT_FOUND_USER));
+                .orElseThrow(() -> new FoodNotFoundException(FoodErrorCode.NOT_FOUND_MEMBER));
         log.info("요청 토큰: " + refreshTokenRequest);
 
         if( !refreshTokenRepository.existsById(refreshTokenRequest) ) {
