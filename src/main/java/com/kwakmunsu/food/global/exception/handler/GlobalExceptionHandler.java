@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException() {
-        return ErrorResponse.toResponseEntity(FoodErrorCode.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ErrorResponse<String>> handleException(Exception e) {
+        return ErrorResponse.toResponseEntity(FoodErrorCode.INTERNAL_SERVER_ERROR,e.getMessage());
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<ErrorResponse> handleUnauthorizedException() {
-        return ErrorResponse.toResponseEntity(FoodErrorCode.UNAUTHORIZED_ERROR);
+    public ResponseEntity<ErrorResponse<String>> handleUnauthorizedException(AuthenticationException e) {
+        return ErrorResponse.toResponseEntity(FoodErrorCode.UNAUTHORIZED_ERROR,e.getMessage());
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ErrorResponse> handleForbiddenException() {
-        return ErrorResponse.toResponseEntity(FoodErrorCode.FORBIDDEN_ERROR);
+    public ResponseEntity<ErrorResponse<String>> handleForbiddenException(AccessDeniedException e) {
+        return ErrorResponse.toResponseEntity(FoodErrorCode.FORBIDDEN_ERROR,e.getMessage());
     }
 
 
