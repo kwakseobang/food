@@ -1,8 +1,6 @@
 package com.kwakmunsu.food.global.config;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kwakmunsu.food.auth.jwt.JwtProvider;
 import com.kwakmunsu.food.auth.jwt.filter.JwtFilter;
 import com.kwakmunsu.food.auth.jwt.handler.JwtAccessDeniedHandler;
 import com.kwakmunsu.food.auth.jwt.handler.JwtAuthenticationEntryPoint;
@@ -29,7 +27,7 @@ public class SecurityConfig {
             "/","/error","/auth/**","/members/username/**","/members/nickname/**",
             "/swagger/**","/swagger-ui/**","/v3/api-docs/**"
     };
-    private final String[] hasRoleUrl = {"/food/**"};
+    private final String[] hasRoleUrl = {"/foods/**"};
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
