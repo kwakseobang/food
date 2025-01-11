@@ -36,4 +36,6 @@ public class ErrorMessage {
 
     // < Etc >
     public static final String INTERNAL_SERVER_ERROR = "ERROR - 서버 내부 에러";
+    public static final String AWS_S3_ERROR = "ERROR - AWS S3 내부 에러";
+
 }

@@ -11,10 +11,10 @@ public enum FoodResponseCode {
     // ===================== //
 
     // User 관련 성공 응답
-    CREATED_USER(StatusCode.CREATED, SuccessMessage.CREATED_USER),
-    READ_USER(StatusCode.OK, SuccessMessage.READ_USER),
-    UPDATE_USER(StatusCode.NO_CONTENT, SuccessMessage.UPDATE_USER),
-    DELETE_USER(StatusCode.NO_CONTENT, SuccessMessage.DELETE_USER),
+    CREATED_MEMBER(StatusCode.CREATED, SuccessMessage.CREATED_MEMBER),
+    READ_MEMBER(StatusCode.OK, SuccessMessage.READ_MEMBER),
+    UPDATE_MEMBER(StatusCode.NO_CONTENT, SuccessMessage.UPDATE_MEMBER),
+    DELETE_MEMBER(StatusCode.NO_CONTENT, SuccessMessage.DELETE_MEMBER),
 
 
 
