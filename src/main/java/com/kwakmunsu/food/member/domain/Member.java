@@ -32,7 +32,7 @@ public class Member extends BaseEntity {
     @Column(name = "nickname", nullable = false, unique = true)
     private String nickname;
 
-    @Column(name = "image_url", nullable = false)
+    @Column(name = "image_url")
     private String imageUrl;
 
 
@@ -51,10 +51,9 @@ public class Member extends BaseEntity {
         this.password = password;
         this.nickname = nickname;
         this.role = Role.ROLE_MEMBER;
-        this.imageUrl = "";
     }
 
-    public void updateName(String nickname) {
+    public void updateNickname(String nickname) {
         this.nickname = nickname;
     }
 
