@@ -16,4 +16,7 @@ public class FoodRecordRequestDto {
         private List<String> foodTypes;
     }
 
+
+
+
 }
