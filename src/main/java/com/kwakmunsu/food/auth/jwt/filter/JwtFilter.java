@@ -70,7 +70,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 
         String[] excludePath = {
-                "/swagger/","/swagger-ui/**","/v3/api-docs/**",
+                "/swagger/**","/swagger-ui/**","/v3/api-docs/**",
                 "/auth/**",
                 "/members/username/**","/members/nickname/**"
         };//"/v3/api-docs/**" 추가해줘야 swagger 작동
