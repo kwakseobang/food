@@ -13,7 +13,8 @@ public class ErrorMessage {
 
     // <Vote - Error>
 
-    public static final String NOT_FOUND_FOOD_RECORD = "ERROR - 해당 날짜의 음식 기록을 찾을 수 없습니다.";
+    public static final String NOT_FOUND_FOOD_RECORDS = "ERROR - 해당 날짜의 음식 기록이 존재하지 않습니다..";
+    public static final String NOT_FOUND_FOOD_RECORD = "ERROR -  음식 기록을 찾을 수 없습니다.";
     public static final String BAD_REQUEST_FOOD_RECORD = "ERROR - 잘못된 음식 기록 요청 에러";
     public static final String BAD_REQUEST_CATEGORY = "ERROR - 잘못된 음식 카테고리 요청 에러";
 
