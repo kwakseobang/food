@@ -43,4 +43,20 @@ public class FoodRecordResponseDto {
         private String imageUrl;
     }
 
+    @Getter
+    @NoArgsConstructor
+    @Builder
+    @AllArgsConstructor
+    public static class FoodDetailResponse {
+
+        private long foodRecordId;
+        private long memberId;
+        private String foodName;
+        private Double price;
+        private String recodeDate;
+        private String content;
+        private List<FoodTypeResponse> foodTypes;
+        private List<FoodImageResponse> foodImages;
+    }
+
 }

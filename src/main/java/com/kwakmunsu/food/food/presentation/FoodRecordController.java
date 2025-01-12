@@ -3,6 +3,7 @@ package com.kwakmunsu.food.food.presentation;
 
 import com.kwakmunsu.food.food.dto.request.FoodRecordRequestDto;
 import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto;
+import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto.FoodDetailResponse;
 import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto.FoodListResponse;
 import com.kwakmunsu.food.food.service.FoodRecordService;
 import com.kwakmunsu.food.global.response.FoodResponseCode;
@@ -52,7 +53,7 @@ public class FoodRecordController {
     }
 
     @GetMapping
-    @Operation(summary = "해당 날짜 음식 기록 리스트 ",description = "클라이언트에서 선택한 날짜의 기록한 음식들을 가져오는 API")
+    @Operation(summary = "해당 날짜 음식 기록 리스트 ",description = "사용자가 선택한 날짜의 기록한 음식들을 가져오는 API")
     @Parameters({
             @Parameter(name = "date", description = "선택한 날짜: 형식 - yyyy. M. d.")}
     )
@@ -63,9 +64,10 @@ public class FoodRecordController {
     }
 
     @GetMapping("{foodId}")
-    @Operation(summary = "음식 기록 상세 조회")
-    public ResponseEntity<ResponseData> getRecord(@PathVariable String foodId) {
-        return ResponseData.toResponseEntity(FoodResponseCode.CREATED_FOOD_RECORD);
+    @Operation(summary = "음식 기록 상세 조회", description = "foodId > 0")
+    public ResponseEntity<ResponseData<FoodDetailResponse>> getRecord(@PathVariable String foodId) {
+        FoodDetailResponse foodDetailResponse = foodRecordService.getRecord(Long.parseLong(foodId));
+        return ResponseData.toResponseEntity(FoodResponseCode.READ_FOOD_RECORD,foodDetailResponse);
     }
 
     @PutMapping

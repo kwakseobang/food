@@ -4,6 +4,7 @@ import com.kwakmunsu.food.food.domain.FoodRecord;
 import com.kwakmunsu.food.food.domain.FoodType;
 import com.kwakmunsu.food.food.dto.request.FoodRecordRequestDto;
 import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto;
+import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto.FoodDetailResponse;
 import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto.FoodImageResponse;
 import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto.FoodListResponse;
 import com.kwakmunsu.food.food.dto.response.FoodRecordResponseDto.FoodTypeResponse;
@@ -76,7 +77,7 @@ public class FoodRecordService {
                 currentMemberId
         );
         if (foodRecordList.isEmpty()) {
-            throw new FoodBadRequestException(FoodErrorCode.NOT_FOUND_FOOD_RECORD);
+            throw new FoodBadRequestException(FoodErrorCode.NOT_FOUND_FOOD_RECORDS);
         }
         List<FoodRecordResponseDto.FoodListResponse> foodListResponseList = new ArrayList<>();
         for (FoodRecord foodRecord : foodRecordList) {
@@ -85,16 +86,31 @@ public class FoodRecordService {
             List<FoodTypeResponse> foodTypeResponseList = getFoodTypeResponseList(foodRecordId);
             List<FoodImageResponse> foodImageResponseList = getFoodImageResponseList(foodRecordId);
 
-            FoodListResponse foodListResponse = createFoodListResponse(foodRecordId, foodRecord,
-                    foodTypeResponseList, foodImageResponseList);
+            FoodListResponse foodListResponse = createFoodListResponse(
+                    foodRecord,
+                    foodTypeResponseList,
+                    foodImageResponseList
+            );
             foodListResponseList.add(foodListResponse);
         }
         return foodListResponseList;
     }
 
     @Transactional(readOnly = true)
-    public void getRecord(Long foodRecordId) {
-        // 아이디로 상세 정보를 가져와야함
+    public  FoodDetailResponse getRecord(Long foodRecordId) {
+        // 아이디로 상세 정보를 가져와야ㄴ
+       FoodRecord foodRecord =  foodRecordRepository.findById(foodRecordId)
+                 .orElseThrow(() -> new FoodNotFoundException(FoodErrorCode.NOT_FOUND_FOOD_RECORD));
+
+        List<FoodTypeResponse> foodTypeResponseList = getFoodTypeResponseList(foodRecordId);
+        List<FoodImageResponse> foodImageResponseList = getFoodImageResponseList(foodRecordId);
+
+       FoodDetailResponse foodDetailResponse = createFoodDetailResponse(
+               foodRecord,
+               foodTypeResponseList,
+               foodImageResponseList
+       );
+       return foodDetailResponse;
     }
 
 
@@ -173,15 +189,31 @@ public class FoodRecordService {
 
     // 날짜에 해당하는 음식 기록 응답 객체 생성
     private FoodListResponse createFoodListResponse(
-            Long foodRecordId,
             FoodRecord foodRecord,
             List<FoodTypeResponse> foodTypeResponseList,
             List<FoodImageResponse> foodImageResponseList
     ) {
         return FoodListResponse.builder()
-                .foodRecordId(foodRecordId)
+                .foodRecordId(foodRecord.getId())
                 .foodName(foodRecord.getFoodName())
                 .price(foodRecord.getPrice())
+                .recodeDate(TimeConverter.DatetimeToString(foodRecord.getRecode_date()))
+                .foodTypes(foodTypeResponseList)
+                .foodImages(foodImageResponseList)
+                .build();
+    }
+
+    private FoodDetailResponse createFoodDetailResponse(
+            FoodRecord foodRecord,
+            List<FoodTypeResponse> foodTypeResponseList,
+            List<FoodImageResponse> foodImageResponseList
+    ) {
+        return  FoodDetailResponse.builder()
+                .foodRecordId(foodRecord.getId())
+                .memberId(foodRecord.getMember().getId())
+                .foodName(foodRecord.getFoodName())
+                .price(foodRecord.getPrice())
+                .content(foodRecord.getContent())
                 .recodeDate(TimeConverter.DatetimeToString(foodRecord.getRecode_date()))
                 .foodTypes(foodTypeResponseList)
                 .foodImages(foodImageResponseList)
