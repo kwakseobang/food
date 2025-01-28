@@ -4,6 +4,8 @@ package com.kwakmunsu.food.member.presentation;
 import com.kwakmunsu.food.global.response.FoodResponseCode;
 import com.kwakmunsu.food.global.response.ResponseData;
 import com.kwakmunsu.food.member.dto.request.MemberRequestDto;
+import com.kwakmunsu.food.member.dto.response.MemberResponseDto;
+import com.kwakmunsu.food.member.dto.response.MemberResponseDto.MemberResponse;
 import com.kwakmunsu.food.member.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,6 +28,12 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @GetMapping
+    @Operation(summary = "회원 정보 조회")
+    public ResponseEntity<ResponseData<MemberResponseDto.MemberResponse>> findUserProfile() {
+         MemberResponse getMemberResponse = memberService.getMember();
+        return ResponseData.toResponseEntity(FoodResponseCode.READ_MEMBER, getMemberResponse);
+    }
     @GetMapping("/nickname/{nickname}")
     @Operation(summary = "닉네임 중복 확인 ")
     public ResponseEntity<ResponseData> isExistNickname(@PathVariable String nickname) {
@@ -41,7 +49,9 @@ public class MemberController {
 
     }
 
-    @PutMapping()
+
+
+    @PutMapping
     @Operation(summary = "회원 정보 변경")
     public ResponseEntity<ResponseData> update(
             @RequestPart(required = false) MultipartFile image,

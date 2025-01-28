@@ -7,6 +7,8 @@ import com.kwakmunsu.food.global.image.service.S3ImageService;
 import com.kwakmunsu.food.global.response.FoodErrorCode;
 import com.kwakmunsu.food.global.util.JwtUtil;
 import com.kwakmunsu.food.member.domain.Member;
+import com.kwakmunsu.food.member.dto.response.MemberResponseDto;
+import com.kwakmunsu.food.member.dto.response.MemberResponseDto.MemberResponse;
 import com.kwakmunsu.food.member.repositroy.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,17 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final S3ImageService s3ImageService;
+
+    @Transactional(readOnly = true)
+    public MemberResponseDto.MemberResponse getMember() {
+        Member member = findCurrentMember();
+        return MemberResponse.builder()
+                .userId(member.getId())
+                .username(member.getUsername())
+                .nickname(member.getNickname())
+                .imageUrl(member.getImageUrl())
+                .build();
+    }
 
     @Transactional(readOnly = true)
     public void isExistUsername(String username) {
